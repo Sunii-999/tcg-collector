@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🃏 Pokémon TCG Collector
 
-## Getting Started
+A modern web app for Pokémon TCG enthusiasts — search, track, and collect your favorite Pokémon cards with live price tracking, wishlist management, and Supabase-powered authentication.
 
-First, run the development server:
+Built with **Next.js**, **TailwindCSS**, **GSAP animations**, **Supabase Auth**, and the **Pokémon TCG API**.
+
+---
+
+## 🚀 Features
+
+- 🔍 **Search Cards** — Find Pokémon cards by name, type, or set using the [Pokémon TCG API](https://pokemontcg.io/).
+- 🗂️ **Collection Manager** — Add cards to your personal collection with rarity and price data.
+- 💫 **Wishlist** — Keep track of cards you want to acquire later.
+- 💰 **Price Tracking** — View and monitor real-time market prices for cards.
+- 👤 **Authentication** — Secure login and signup via **Supabase Auth** (Email / OAuth support).
+- 🧩 **Smooth Animations** — Interactive UI transitions powered by **GSAP**.
+- 🌙 **Responsive Design** — Fully responsive layout built with **TailwindCSS**.
+- 🧠 **Iconography** — Crisp, accessible UI icons from **lucide-react**.
+
+---
+
+## 🧰 Tech Stack
+
+| Category | Technology |
+|-----------|-------------|
+| Framework | [Next.js 14+ (App Router)](https://nextjs.org/) |
+| Styling | [TailwindCSS](https://tailwindcss.com/) |
+| Fonts | [Inter (Google Fonts)](https://fonts.google.com/specimen/Inter) |
+| Animations | [GSAP](https://greensock.com/gsap/) |
+| Icons | [lucide-react](https://lucide.dev/) |
+| Auth & DB | [Supabase](https://supabase.com/) |
+| API | [Pokémon TCG API](https://pokemontcg.io/) |
+| Deployment | [Vercel](https://vercel.com/) |
+
+---
+
+## ⚙️ Getting Started
+
+### 1️⃣ Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone https://github.com/sunii-999/tcg-collector.git
+cd tcg-collector

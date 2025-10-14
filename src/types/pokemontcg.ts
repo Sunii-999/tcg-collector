@@ -1,8 +1,3 @@
-// types/pokemontcg.ts
-
-/** * Defines the structure for the individual card. 
- * This is the object found under response.data. 
- */
 export interface Card {
   id: string;
   name: string;
@@ -18,18 +13,15 @@ export interface Card {
   retreatCost?: string[];
   convertedRetreatCost?: number;
 
-  set: Set; // Nested Set object
+  set: Set;
   number: string;
   artist: string;
   rarity: string;
   nationalPokedexNumbers?: number[];
-  
   legalities: Legalities;
   images: CardImages;
-  tcgplayer?: TCGPlayerPrices; // Optional as pricing data might not always be present
+  tcgplayer?: TCGPlayerPrices;
 }
-
-// --- Nested Types ---
 
 export interface Attack {
   name: string;
@@ -47,7 +39,6 @@ export interface Weakness {
 export interface Legalities {
   unlimited: 'Legal' | 'Illegal';
   expanded: 'Legal' | 'Illegal';
-  // Add other formats if needed
 }
 
 export interface CardImages {
@@ -62,8 +53,8 @@ export interface Set {
   printedTotal: number;
   total: number;
   legalities: Legalities;
-  ptcgoCode: string;
-  releaseDate: string; // "YYYY/MM/DD"
+  ptcgoCode?: string;
+  releaseDate: string;
   updatedAt: string; // "YYYY/MM/DD HH:MM:SS"
   images: SetImages;
 }
@@ -79,10 +70,9 @@ export interface TCGPlayerPrices {
     prices: {
         holofoil?: PriceDetail;
         reverseHolofoil?: PriceDetail;
-        // Add other price types like "normal" if needed
     };
 }
-
+ 
 export interface PriceDetail {
     low: number;
     mid: number;
@@ -91,19 +81,13 @@ export interface PriceDetail {
     directLow?: number;
 }
 
-
-/** * Defines the structure for an API response when fetching a LIST of cards (GET /v2/cards). 
- */
 export interface PokemonTcgApiResponse {
-  data: Card[]; // Array of Card objects
+  data: Card[];
   count: number;
   pageSize: number;
   totalCount: number;
   page: number;
 }
-
-/** * Defines the structure for an API response when fetching a SINGLE card (GET /v2/cards/:id). 
- */
 export interface PokemonTcgSingleCardResponse {
-  data: Card; // Single Card object
+  data: Card;
 }

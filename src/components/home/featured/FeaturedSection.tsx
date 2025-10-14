@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import FeaturedCards from "@/components/home/featuredCards";
+import FeaturedCards from "@/components/home/featured/FeaturedCards";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -77,10 +77,6 @@ export default function FeaturedSection() {
                         Effortlessly track your entire collection—no matter the size. See your progress for every individual set at a glance, finally retiring those manual spreadsheets.
                     </p>
                 </div>
-
-                {/* NOTE: FeaturedCards is an async Server Component, which is OK here 
-                   because Next.js handles the rendering and streaming before this 
-                   Client Component mounts. */}
                 <div ref={cardsRef} className="my-10">
                     <FeaturedCards />
                 </div>

@@ -1,29 +1,28 @@
-// src/lib/pokemontcg.ts
-
 import { PokemonTcgApiResponse } from '../types/pokemontcg';
 
 const API_BASE_URL = 'https://api.pokemontcg.io/v2/cards';
-const API_KEY = process.env.POKEMONTCG_API_KEY;
 
-// UPDATED: Added page and pageSize parameters for better control
 export async function fetchPokemonCards(
   query: string = '', 
   page: number = 1, 
-  pageSize: number = 25 // Default size for a good random sample
+  pageSize: number = 25 
 ): Promise<PokemonTcgApiResponse> {
+  const API_KEY = process.env.POKEMONTCG_API_KEY;
+
   if (!API_KEY) {
-    throw new Error('POKEMONTCG_API_KEY is not set in environment variables.');
+    if (typeof window === 'undefined') {
+      console.error('SERVER ERROR: POKEMONTCG_API_KEY is missing from environment variables.');
+      throw new Error('POKEMONTCG_API_KEY is not set in environment variables.');
+    }
+
   }
 
   const params = new URLSearchParams();
   
-  // CRITICAL FIX: Only append 'q' if the query is NOT 'random' or empty.
-  // The API rejected 'q=random'. When requesting random, we just want a large batch.
   if (query && query !== 'random') {
     params.append('q', query);
   }
   
-  // Always append pagination for control
   params.append('page', page.toString());
   params.append('pageSize', pageSize.toString());
 
@@ -33,7 +32,7 @@ export async function fetchPokemonCards(
     const response = await fetch(url, {
       method: 'GET',
       headers: {
-        'X-Api-Key': API_KEY,
+        'X-Api-Key': API_KEY || '', 
         'Content-Type': 'application/json',
       },
       next: {

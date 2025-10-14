@@ -1,0 +1,70 @@
+// app/components/home/FeaturedSectionClient.tsx
+'use client'
+
+import { useRef, useEffect } from "react";
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function FeaturedSectionClient({ cards }: { cards: React.ReactNode }) {
+  const containerRef = useRef(null);
+  const titleRef = useRef(null);
+  const textRef = useRef(null);
+  const cardsRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    gsap.set([titleRef.current, textRef.current, buttonRef.current], { opacity: 0, y: 50 });
+    gsap.set(cardsRef.current, { opacity: 0, scale: 0.8 });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top 85%",
+        end: "bottom center",
+        toggleActions: "play none none none",
+      },
+    });
+
+    tl.to(titleRef.current, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" })
+      .to(textRef.current, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.5")
+      .to(cardsRef.current, { opacity: 1, scale: 1, duration: 1, ease: "elastic.out(1, 0.5)" }, "-=0.3")
+      .to(buttonRef.current, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.6");
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      className="bg-white text-black text-center h-screen p-10 flex flex-col items-center justify-center"
+    >
+      <div>
+        <div className="flex flex-col items-center justify-center w-[60%] m-auto gap-10">
+          <h1 ref={titleRef} className="text-6xl font-bold">
+            A place to collect
+          </h1>
+          <p ref={textRef}>
+            Effortlessly track your entire collection—no matter the size. See your progress for every individual set at a glance, finally retiring those manual spreadsheets.
+          </p>
+        </div>
+
+        <div ref={cardsRef} className="my-10">
+          {cards}
+        </div>
+
+        <div ref={buttonRef}>
+          <Link href="/my-collection">
+            <Button className="hover:cursor-pointer" variant="blackBtn">
+              Check out your Collection
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}

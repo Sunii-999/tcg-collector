@@ -1,9 +1,7 @@
-// src/components/home/featuredCards.tsx
 
 import { fetchPokemonCards } from '@/lib/pokemontcg';
 import { Card } from '@/types/pokemontcg';
 
-// Helper function to shuffle an array and pick the first N elements
 const getRandomCards = (cards: Card[], count: number): Card[] => {  
   for (let i = cards.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));

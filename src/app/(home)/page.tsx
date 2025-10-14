@@ -1,35 +1,43 @@
-import { redirect } from 'next/navigation'
-import { createClient } from '@/utils/supabase/server'
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function Home() {
-    const supabase = await createClient()
+    return (
+      <>
+        <div className="text-center h-screen mt-10 text-white">
+        <h1
+          className="text-6xl font-bold"
+        >
+          Mega Evolution series
+        </h1>
+        <p
+          className="text-[#2AC5EC]"
+        >
+          November 14 2025
+        </p>
+        <div className="flex flex-col items-center justify-center">
+          <img 
+          src="/phantasmal-flames.png" 
+          alt="Mega Evolution series : Phantasmal Flames"
+          className="w-[25%] -rotate-6 drop-shadow-2xl"
+          />
+          <Link
+          href="/sign-in">
+              <Button
+              className=""
+              >
+              Create account
+            </Button>
+          </Link>
+        </div>
+          
 
-    // 1. Authenticate the user
-    const { data: authData, error: authError } = await supabase.auth.getUser()
+      </div>
 
-    if (authError || !authData?.user) {
-        redirect('/sign-in')
-    }
+      <div>
 
-    const userId = authData.user.id
-    let username: string | null = null
-    
-const { data: profileDataArray, error: profileError } = await supabase
-        .from('users') // Assumes your public table is named 'users'
-        .select('username')
-        .eq('id', userId)
-
-    
-
-    if (profileError) {
-    console.error('Error fetching public user profile:', profileError.message)
-} else if (profileDataArray && profileDataArray.length > 0) {
-    username = profileDataArray[0].username
-}
-    
-    if (username === null) {
-        return <p>Hello</p>
-    } else {
-        return <p>Hello  {username}</p>
-    }
+      </div>
+      
+      </>
+    )
 }

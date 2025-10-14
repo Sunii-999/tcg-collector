@@ -1,43 +1,40 @@
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
-export default async function Home() {
+import HeroAnimation from "@/components/home/heroAnimation"; 
+import FeaturedSection from "@/components/home/FeaturedSection";
+
+export default function Home() {
     return (
-      <>
-        <div className="text-center h-screen mt-10 text-white">
-        <h1
-          className="text-6xl font-bold"
-        >
-          Mega Evolution series
-        </h1>
-        <p
-          className="text-[#2AC5EC]"
-        >
-          November 14 2025
-        </p>
-        <div className="flex flex-col items-center justify-center">
-          <img 
-          src="/phantasmal-flames.png" 
-          alt="Mega Evolution series : Phantasmal Flames"
-          className="w-[25%] -rotate-6 drop-shadow-2xl"
-          />
-          <Link
-          href="/sign-in">
-              <Button
-              className=""
-              >
-              Create account
-            </Button>
-          </Link>
-        </div>
-          
+        <>
+            {/* --- Hero Section (White/Blue Text) --- */}
+            <div className="text-center h-screen flex flex-col items-center gap-10 text-white ">
+                <div className="pt-20">
+                    <h1
+                        className="text-6xl font-bold"
+                    >
+                        Mega Evolution series
+                    </h1>
+                    <p
+                        className="text-[#2AC5EC]"
+                    >
+                        November 14 2025
+                    </p>
+                </div>
 
-      </div>
+                <HeroAnimation 
+                    src="/phantasmal-flames.png" 
+                    alt="Mega Evolution series : Phantasmal Flames"
+                    className="w-[25%] drop-shadow-2xl"
+                />
 
-      <div>
-
-      </div>
-      
-      </>
+                <Link href="/sign-up">
+                    <Button className="hover:cursor-pointer">
+                        Create account
+                    </Button>
+                </Link>
+            </div>
+            <FeaturedSection />
+        </>
     )
 }

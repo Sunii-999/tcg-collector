@@ -40,31 +40,36 @@ export default function FeaturedSectionClient({ cards }: { cards: React.ReactNod
 
   return (
     <div
-      ref={containerRef}
-      className="bg-white text-black text-center h-screen p-10 flex flex-col items-center justify-center"
-    >
-      <div>
-        <div className="flex flex-col items-center justify-center w-[60%] m-auto gap-10">
-          <h1 ref={titleRef} className="text-6xl font-bold">
-            A place to collect
-          </h1>
-          <p ref={textRef}>
-            Effortlessly track your entire collection—no matter the size. See your progress for every individual set at a glance, finally retiring those manual spreadsheets.
-          </p>
+    ref={containerRef}
+                className="bg-white text-black text-center min-h-screen py-16 px-4 flex flex-col items-center justify-center"
+>
+    <div>
+        <div 
+            className="flex flex-col items-center justify-center w-full max-w-xl mx-auto gap-6 sm:gap-10"
+        >
+            <h1 
+                ref={titleRef} 
+                className="text-3xl sm:text-4xl lg:text-6xl font-bold"
+            >
+                A place to collect
+            </h1>
+            <p ref={textRef}>
+                Effortlessly track your entire collection—no matter the size. See your progress for every individual set at a glance, finally retiring those manual spreadsheets.
+            </p>
         </div>
 
         <div ref={cardsRef} className="my-10">
-          {cards}
+            {cards}
         </div>
 
         <div ref={buttonRef}>
-          <Link href="/my-collection">
-            <Button className="hover:cursor-pointer" variant="blackBtn">
-              Check out your Collection
-            </Button>
-          </Link>
+            <Link href="/my-collection">
+                <Button className="hover:cursor-pointer" variant="blackBtn">
+                    Check out your Collection
+                </Button>
+            </Link>
         </div>
-      </div>
     </div>
+</div>
   );
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/ui/Footer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -23,8 +24,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased`}
       >
-        <Navbar />
+        <main className="max-w-screen">
+          <Navbar />
         {children}
+        <Footer />
+        </main>
       </body>
     </html>
   );

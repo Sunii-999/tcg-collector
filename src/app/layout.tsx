@@ -26,7 +26,9 @@ export default function RootLayout({
       >
         <main className="max-w-screen">
           <Navbar />
-        {children}
+        <div className="min-h-screen mt-10 w-[95%] mx-auto">
+          {children}
+        </div>
         <Footer />
         </main>
       </body>

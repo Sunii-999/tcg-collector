@@ -50,22 +50,7 @@ type PokemonCard = {
 
 // ---------------- Helpers ----------------
 async function fetchJSON(url: string) {
-  try {
-    const res = await fetch(url, {
-      headers: { 'X-Api-Key': POKEMONTCG_API_KEY }
-    })
-    if (!res.ok) {
-      const text = await res.text()
-      console.error(`❌ Failed fetch: ${res.status} ${res.statusText}`)
-      console.error('Response preview:', text.slice(0, 500))
-      return null
-    }
-    return await res.json()
-  } catch (err) {
-    console.error('❌ Fetch error:', err)
-    return null
-  }
-}
+
 
 async function fetchCardsForSet(setId: string): Promise<PokemonCard[]> {
   const url = `${API_BASE}/cards?q=${encodeURIComponent(`{"set.id":"${setId}"}`)}&pageSize=250`

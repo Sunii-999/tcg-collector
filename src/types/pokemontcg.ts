@@ -3,11 +3,14 @@ export interface Card {
   name: string;
   supertype: string;
   subtypes: string[];
-  hp: string;
-  types: string[];
+  hp?: string;
+  types?: string[];
+  evolvesFrom?: string | string[]; // safer if API ever returns multiple
   evolvesTo?: string[];
+  abilities?: Ability[];
   rules?: string[];
-  
+  flavorText?: string;
+
   attacks?: Attack[];
   weaknesses?: Weakness[];
   retreatCost?: string[];
@@ -21,6 +24,15 @@ export interface Card {
   legalities: Legalities;
   images: CardImages;
   tcgplayer?: TCGPlayerPrices;
+  cardmarket?: CardmarketPrices;
+
+  
+}
+
+export interface Ability {
+  name: string;
+  text: string;
+  type: string;
 }
 
 export interface Attack {
@@ -38,6 +50,7 @@ export interface Weakness {
 
 export interface Legalities {
   unlimited: 'Legal' | 'Illegal';
+  standard?: 'Legal' | 'Illegal';
   expanded: 'Legal' | 'Illegal';
 }
 
@@ -65,20 +78,43 @@ export interface SetImages {
 }
 
 export interface TCGPlayerPrices {
-    url: string;
-    updatedAt: string;
-    prices: {
-        holofoil?: PriceDetail;
-        reverseHolofoil?: PriceDetail;
-    };
+  url: string;
+  updatedAt: string;
+  prices: {
+    normal?: PriceDetail;
+    holofoil?: PriceDetail;
+    reverseHolofoil?: PriceDetail;
+  };
 }
- 
+
+export interface CardmarketPrices {
+  url: string;
+  updatedAt: string;
+  prices: {
+    averageSellPrice?: number;
+    lowPrice?: number;
+    trendPrice?: number;
+    germanProLow?: number | null;
+    suggestedPrice?: number | null;
+    reverseHoloSell?: number | null;
+    reverseHoloLow?: number | null;
+    reverseHoloTrend?: number | null;
+    lowPriceExPlus?: number;
+    avg1?: number;
+    avg7?: number;
+    avg30?: number;
+    reverseHoloAvg1?: number | null;
+    reverseHoloAvg7?: number | null;
+    reverseHoloAvg30?: number | null;
+  };
+}
+
 export interface PriceDetail {
-    low: number;
-    mid: number;
-    high: number;
-    market: number;
-    directLow?: number;
+  low: number;
+  mid: number;
+  high: number;
+  market: number;
+  directLow?: number;
 }
 
 export interface PokemonTcgApiResponse {
@@ -88,6 +124,7 @@ export interface PokemonTcgApiResponse {
   totalCount: number;
   page: number;
 }
+
 export interface PokemonTcgSingleCardResponse {
   data: Card;
 }

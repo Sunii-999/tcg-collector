@@ -1,9 +1,7 @@
-import React from 'react'
-
 export default function page() {
   return (
     <div>
-      cards page
+      apple
     </div>
   )
 }
